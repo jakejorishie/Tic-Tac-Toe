@@ -1,30 +1,47 @@
+import React, { useState }from 'react';
+import './TicTacToe.css';
+
 const TicTacToe = () => {
+const [turn, setTurn] = useState('X');
+const [cells, setCells] = useState(Array(9).fill(''));
+
+    const handleClick = (num) => {
+    let squares = [...cells];
+        if (turn === 'X') {
+            squares[num] = 'X';
+            setTurn ('O');
+        } else {
+            squares[num] = 'O';
+            setTurn ('X');
+        }
+        setCells(squares)
+        console.log(squares)
+    };
     
-    const Cell = () => {
-        return <td>-</td>
+    
+    const Cell = ({num}) => {
+        return <td onClick={() => handleClick(num)}>-</td>
     }
-    
+
     return (
-                <div>
-                    <header>
-                    <h1>Tic Tac Toe</h1>
-                    </header>
+                <div className='container'>
                     <table>
+                        Turn: {turn}
                         <tbody>
                             <tr>
-                                <Cell />
-                                <Cell />
-                                <Cell />
+                                <Cell num={1} />
+                                <Cell num={2}/>
+                                <Cell num={3} />
                             </tr>
                             <tr>
-                                <Cell />
-                                <Cell />
-                                <Cell />
+                                <Cell num={4} />
+                                <Cell num={5} />
+                                <Cell num={6} />
                             </tr>
                             <tr>
-                                <Cell />
-                                <Cell />
-                                <Cell />
+                                <Cell num={7} />
+                                <Cell num={8} />
+                                <Cell num={9} />
                             </tr>
                         </tbody>
                     </table>
